@@ -1,4 +1,12 @@
+
+<p align="center">
+  <img alt="react-native-swiper" src="./image/hi.png" width="208">
+</p>
 Bem vindo ao repositório do Aplicativo Hi!
+
+#1: npm install
+
+
 
 Esse aplicativo foi criado em React-Native utilizando React-Navigation.
 
