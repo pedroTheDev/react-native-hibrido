@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img alt="react-native-swiper" src="./image/hi.png" width="208">
+  <img alt="react-native-hi" src="./image/hi.png" width="208">
 </p>
 Bem vindo ao repositório do Aplicativo Hi!
 
