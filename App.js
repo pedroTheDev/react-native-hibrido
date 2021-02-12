@@ -113,16 +113,16 @@ function MenuScreen({navigation}){
 
         <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Profile')}
+        onPress={() => navigation.navigate('Album')}
         >
-        <Text style={styles.text}>Profile</Text>
+        <Text style={styles.text}>Album</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Album')}
+        onPress={() => navigation.navigate('Profile')}
         >
-        <Text style={styles.text}>Album</Text>
+        <Text style={styles.text}>Profile</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
