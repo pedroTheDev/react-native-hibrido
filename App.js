@@ -1,11 +1,17 @@
 import 'react-native-gesture-handler';
 import * as React from 'react'
+
 import {useEffect, useState} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Image, FlatList, ActivityIndicator, Button, Text, View, TextInput, TouchableOpacity } from 'react-native';
-
-
+import { StyleSheet,
+  Image,
+  FlatList,
+  ActivityIndicator,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity } from 'react-native';
 
 
 function SplashScreen({ navigation }){
@@ -35,10 +41,10 @@ function LoginScreen({ navigation }){
     if(email.length !== 0 || email !== ''){
       navigation.navigate('Profile', {post:email})
 
-      var myHeaders = new Headers();
-      var formdata = new FormData();
+      let myHeaders = new Headers();
+      let formdata = new FormData();
 
-      var requestOptions = {
+      let requestOptions = {
         method: 'POST',
         headers: myHeaders,
         body: formdata,
@@ -57,7 +63,9 @@ function LoginScreen({ navigation }){
   }
   return(
     <View style={styles.container}>
+
     <Image style={styles.imageLogin} source={require('./image/hi.png')}/>
+
     <TextInput 
     placeholder="email"
     style={styles.input}
@@ -65,12 +73,14 @@ function LoginScreen({ navigation }){
     onChangeText={setEmail}
     required
      />
+
     <TouchableOpacity
     onPress={handleSubmit}
     style={styles.button}
     >
     <Text style={styles.text}> Sign in</Text>
     </TouchableOpacity>
+
     </View>
   )
 }
@@ -90,12 +100,14 @@ function ProfileScreen ({ route, navigation }){
         <Text style={styles.text}>
           Email: {route.params?.post}
         </Text>
+
          <TouchableOpacity
             onPress={() => navigation.navigate('Menu')}
             style={styles.button}
             >
             <Text style={styles.text}> Menu</Text>
         </TouchableOpacity>
+
       </View>
     )
 }
@@ -115,14 +127,14 @@ function MenuScreen({navigation}){
         style={styles.button}
         onPress={() => navigation.navigate('Album')}
         >
-        <Text style={styles.text}>Album</Text>
+        <Text style={styles.text}>Álbuns</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Profile')}
         >
-        <Text style={styles.text}>Profile</Text>
+        <Text style={styles.text}>Perfil</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -141,6 +153,7 @@ function PostScreen({navigation}){
   const [posts, setPosts] = useState([]);
 
     useEffect(()=>{
+
       fetch(`https://jsonplaceholder.typicode.com/posts`)
         .then(response => response.json())
         .then(json => {
@@ -148,15 +161,18 @@ function PostScreen({navigation}){
           setPosts(json)})
         .catch(error => console.log('error', error))
         .finally(() => setLoading(false));
+
   }, [])
 
   return(
     <View >
+
       <TouchableOpacity
         style={styles.containerHeader}
         onPress={() => navigation.navigate('Menu')}>
           <Image style={styles.arrowimg} source={require('./image/arrow.png')}/>
       </TouchableOpacity>
+      
       {isLoading ? <ActivityIndicator/> : (
         <FlatList
         data={posts}
@@ -178,11 +194,11 @@ function PostScreen({navigation}){
 
 function AlbumScreen({navigation}){
   
-
   const [album, setAlbum] = useState([]);
   const [isLoading, setLoading] = useState(true)
 
     useEffect(()=>{
+
       fetch(`https://jsonplaceholder.typicode.com/albums`)
         .then(response => response.json())
         .then(json => {
@@ -190,6 +206,7 @@ function AlbumScreen({navigation}){
           setAlbum(json)})
         .catch(error => console.log('error', error))
         .finally(() => setLoading(false));
+
   }, [])
 
   return(
@@ -244,6 +261,17 @@ const styles = StyleSheet.create({
     width: 20,
     marginBottom:10
   },
+  button:{
+    margin: 20,
+    padding:15,
+    backgroundColor: '#1d4921',
+    height: 50,
+    width: 150,
+    justifycontent: 'center',
+    alignItems: 'center',
+    borderRadius:6,
+    fontSize:50,
+  },
   containerHeader: {
     justifycontent: 'flex-start',
     padding: 10,
@@ -278,19 +306,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#9DA6A7',
   },
-  button:{
-    margin: 20,
-    padding:15,
-    backgroundColor: '#1d4921',
+  input:{
     height: 50,
-    width: 150,
-    justifycontent: 'center',
-    alignItems: 'center',
-    borderRadius:6,
-    fontSize:50,
-  },
-  text:{
-    color: 'white',
+    width: 300,
+    padding: 10,
+    backgroundColor:'white',
+    borderColor: "#20232a",
+    borderRadius: 6,
   },
   splashbutton:{
     padding:15,
@@ -314,14 +336,10 @@ const styles = StyleSheet.create({
     color:'white',
     fontSize:200,
   },
-  input:{
-    height: 50,
-    width: 300,
-    padding: 10,
-    backgroundColor:'white',
-    borderColor: "#20232a",
-    borderRadius: 6,
-  }
+  text:{
+    color: 'white',
+  },
+  
 });
 
 export default App;
